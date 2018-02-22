@@ -92,7 +92,8 @@ function checkStock() {
         for (i = 0; i < response.length; i++) {
             if(response[i].id === parseInt(thisID)){
                 thisItem = response[i]
-                
+                thisPrice = thisItem.price
+                totalCost = parseInt(thisPrice)*parseInt(thisUnit)
                 if(thisItem.stock_quantity<parseInt(thisUnit)){
                      console.log("Sorry, your order currently exceeds our inventory stock");
                 connection.end();
@@ -101,6 +102,8 @@ function checkStock() {
     newQuantity = thisItem.stock_quantity - parseInt(thisUnit)
     // console.log(newQuantity);
     console.log("placing order now");
+    console.log("your total cost is: $"+totalCost);
+
     connection.query
 placeOrder();    
 
